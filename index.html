@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>蔡堡丞 Bau-Cheng Tsai</title>
+    <title>蔡堡丞 Bau-Cheng Tsai | 履歷</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Tenor+Sans&display=swap" rel="stylesheet">
@@ -96,37 +96,37 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh; /* 改為 min-height 避免內容過多時被切掉 */
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: var(--primary-blue);
             position: relative;
-            padding: 0 5%;
+            padding: 120px 5% 50px; /* 增加上方 padding 避開 navbar */
         }
 
         .hero-content {
-            max-width: 1200px;
+            max-width: 1100px; /*稍微縮窄讓畫面更聚攏*/
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr; /* 左側文字寬一點，右側照片窄一點 */
             gap: 50px;
             align-items: center;
         }
 
         .hero-text h1 {
-            font-size: 4rem;
+            font-size: 3.5rem; /* 字體稍微調小一點點 */
             font-weight: 300;
             margin-bottom: 20px;
             line-height: 1.2;
         }
 
         .hero-text h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 400;
             color: var(--text-grey);
             margin-bottom: 40px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .hero-text p {
@@ -138,32 +138,34 @@
 
         .hero-image-container {
             position: relative;
-            height: 600px;
+            height: 450px; /* 高度縮小，原本是 600px */
             width: 100%;
+            max-width: 400px; /* 限制最大寬度，避免在寬螢幕上照片太大 */
+            margin: 0 auto; /* 水平置中 */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .hero-image-frame {
-            width: 80%;
-            height: 80%;
+            width: 90%;
+            height: 90%;
             border: 2px solid var(--accent-black);
-            position: relative;
+            position: absolute;
+            top: 15px;
+            left: 15px;
             z-index: 1;
         }
 
-        /* 修改這裡：直接設定 img 樣式以適應外框 */
         .hero-image {
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            width: 80%;
-            height: 80%;
+            position: relative; /* 改回 relative 讓它自然撐開容器或被容器限制 */
+            width: 90%;
+            height: 90%;
             background-color: var(--white);
-            object-fit: cover; /* 確保照片填滿且不變形 */
+            object-fit: cover; 
+            object-position: top center; /* 關鍵：對齊上方，避免切到頭 */
             z-index: 2;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         /* General Section Styles */
@@ -388,6 +390,7 @@
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 30px;
             }
 
             .hero-text h1 {
@@ -400,7 +403,13 @@
 
             .hero-image-container {
                 height: 400px;
-                margin-top: 30px;
+                margin-top: 0;
+            }
+            
+            .hero-image-frame {
+                 /* 手機版拿掉位移框線，比較簡潔 */
+                top: 10px;
+                left: 10px;
             }
 
             .about-grid {
@@ -420,6 +429,10 @@
             .contact-info {
                 flex-direction: column;
                 gap: 20px;
+            }
+            
+            .hero-image-container {
+                height: 350px;
             }
         }
     </style>
@@ -442,12 +455,14 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>蔡堡丞<br><span style="font-size: 0.5em; display:block; margin-top:10px; color:#000;">Tsai, Bau-Cheng</span></h1>
-                <h2>系統規劃師 | 準軟體工程師</h2>
+                <!-- 移除了「準軟體工程師」 -->
+                <h2>系統規劃師</h2>
                 <p>專注於 AI 應用與專案開發。具備良好的學習與協調能力，擅長在團隊中橋接商業需求與技術執行。</p>
                 <a href="#contact" style="display: inline-block; padding: 12px 30px; background: var(--accent-black); color: var(--white); letter-spacing: 1px;">聯繫我</a>
             </div>
             <div class="hero-image-container">
                 <div class="hero-image-frame"></div>
+                <!-- 修改了圖片 src，並加入 object-position 確保頭部不被切掉 -->
                 <img src="photo-stickers.jpg" alt="蔡堡丞照片" class="hero-image" onerror="this.src='https://via.placeholder.com/400x500/e0e0e0/888888?text=Your+Photo'">
             </div>
         </div>
@@ -464,8 +479,7 @@
                 <div class="label">位置</div>
                 <div class="value">新北市中和區</div>
                 
-                <div class="label">求職目標</div>
-                <div class="value">後端工程師、軟體工程師</div>
+                <!-- 移除了「求職目標」 -->
             </div>
             <div class="about-desc">
                 <p>畢業於國立臺北大學金融系。從金融背景出發，因修習程式課程而發現對技術的熱情，進而自學考取 Java 專業證照 (OCP JP/Web)。</p>
@@ -592,4 +606,3 @@
 
 </body>
 </html>
-
